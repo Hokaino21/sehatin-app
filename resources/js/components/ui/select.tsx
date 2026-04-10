@@ -17,7 +17,7 @@ const SelectTrigger = React.forwardRef<
     <SelectPrimitive.Trigger
         ref={ref}
         className={cn(
-            'flex h-12 w-full items-center justify-between rounded-lg border-none bg-surface-container px-4 py-3 text-base text-on-surface transition-all duration-200 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-primary disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 md:text-sm',
+            'cursor-pointer flex h-12 w-full items-center justify-between rounded-lg border-none bg-surface-container px-4 py-3 text-base text-on-surface transition-all duration-200 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-primary disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 md:text-sm',
             className,
         )}
         {...props}
@@ -34,7 +34,7 @@ const SelectScrollUpButton = React.forwardRef<
     React.ElementRef<typeof SelectPrimitive.ScrollUpButton>,
     React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollUpButton>
 >(({ className, ...props }, ref) => (
-    <SelectPrimitive.ScrollUpButton ref={ref} className={cn('flex cursor-default items-center justify-center py-1', className)} {...props}>
+    <SelectPrimitive.ScrollUpButton ref={ref} className={cn('cursor-pointer flex cursor-default items-center justify-center py-1', className)} {...props}>
         <ChevronUp className="h-4 w-4" />
     </SelectPrimitive.ScrollUpButton>
 ));
@@ -44,7 +44,7 @@ const SelectScrollDownButton = React.forwardRef<
     React.ElementRef<typeof SelectPrimitive.ScrollDownButton>,
     React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollDownButton>
 >(({ className, ...props }, ref) => (
-    <SelectPrimitive.ScrollDownButton ref={ref} className={cn('flex cursor-default items-center justify-center py-1', className)} {...props}>
+    <SelectPrimitive.ScrollDownButton ref={ref} className={cn('cursor-pointer flex cursor-default items-center justify-center py-1', className)} {...props}>
         <ChevronDown className="h-4 w-4" />
     </SelectPrimitive.ScrollDownButton>
 ));

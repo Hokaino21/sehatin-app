@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { DatePicker } from '@/components/ui/date-picker';
+
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 import { Head, Link, useForm } from '@inertiajs/react';
-import { Eye, EyeOff } from 'lucide-react';
+import { ArrowRight, Calendar, Check, CreditCard, Droplet, Eye, EyeOff, Home, Lock, LockKeyhole, Mail, Phone, User } from 'lucide-react';
 import { FormEventHandler, useState } from 'react';
 
 export default function Register() {
@@ -150,7 +150,7 @@ export default function Register() {
                         <div className="flex items-center justify-between mb-8">
                             <div className="flex flex-col items-center gap-2">
                                 <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${step === 1 ? 'bg-primary text-on-primary ring-4 ring-primary/10' : 'bg-primary text-on-primary'}`}>
-                                    {step > 1 ? <span className="material-symbols-outlined text-lg">check</span> : '1'}
+                                    {step > 1 ? <Check className="size-5" /> : '1'}
                                 </div>
                                 <span className={`text-xs font-semibold ${step >= 1 ? 'text-primary' : 'text-on-surface-variant'}`}>Buat Akun</span>
                             </div>
@@ -174,19 +174,15 @@ export default function Register() {
                                     <div className="space-y-4">
                                         <div className="space-y-2">
                                             <label className="text-sm font-semibold text-on-surface-variant px-1" htmlFor="name">Nama Lengkap</label>
-                                            <div className="relative group">
-                                                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                                    <span className="material-symbols-outlined text-outline-variant text-xl group-focus-within:text-primary transition-colors">person</span>
-                                                </div>
                                                 <Input
-                                                    className={`pl-11 ${errors.name ? 'ring-2 ring-red-500' : ''}`}
+                                                    className={errors.name ? 'ring-2 ring-red-500' : ''}
                                                     id="name"
                                                     value={data.name}
                                                     onChange={(e) => { setData('name', e.target.value); clearErrors('name'); }}
                                                     placeholder="Masukkan nama lengkap Anda"
                                                     type="text"
+                                                    icon={User}
                                                 />
-                                            </div>
                                             {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                                         </div>
 
@@ -204,6 +200,7 @@ export default function Register() {
                                                         onChange={(e) => { setData('email', e.target.value); clearErrors('email'); }}
                                                         placeholder="nama@contoh.com"
                                                         type="email"
+                                                        icon={Mail}
                                                     />
                                                 </div>
                                                 {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
@@ -222,6 +219,7 @@ export default function Register() {
                                                         onChange={(e) => { setData('phone', e.target.value); clearErrors('phone'); }}
                                                         placeholder="08xx-xxxx-xxxx"
                                                         type="tel"
+                                                        icon={Phone}
                                                     />
                                                 </div>
                                                 {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
@@ -231,22 +229,20 @@ export default function Register() {
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div className="space-y-2">
                                                 <label className="text-sm font-semibold text-on-surface-variant px-1" htmlFor="password">Kata Sandi</label>
-                                                <div className="relative group">
-                                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                                        <span className="material-symbols-outlined text-outline-variant text-xl group-focus-within:text-primary transition-colors">lock</span>
-                                                    </div>
+                                                <div className="relative">
                                                     <Input
-                                                        className={`pl-11 pr-12 ${errors.password ? 'ring-2 ring-red-500' : ''}`}
+                                                        className={`pr-12 ${errors.password ? 'ring-2 ring-red-500' : ''}`}
                                                         id="password"
                                                         value={data.password}
                                                         onChange={(e) => { setData('password', e.target.value); clearErrors('password'); }}
                                                         placeholder="••••••••"
                                                         type={showPassword ? 'text' : 'password'}
+                                                        icon={Lock}
                                                     />
                                                     <button
                                                         type="button"
                                                         onClick={() => setShowPassword(!showPassword)}
-                                                        className="cursor-pointer absolute inset-y-0 right-0 pr-4 flex items-center text-primary hover:text-primary transition-colors focus:outline-hidden"
+                                                        className="cursor-pointer absolute inset-y-0 right-0 pr-4 flex items-center text-primary transition-opacity focus:outline-hidden hover:opacity-80"
                                                     >
                                                         {showPassword ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
                                                     </button>
@@ -256,22 +252,20 @@ export default function Register() {
 
                                             <div className="space-y-2">
                                                 <label className="text-sm font-semibold text-on-surface-variant px-1" htmlFor="password_confirmation">Konfirmasi Sandi</label>
-                                                <div className="relative group">
-                                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                                        <span className="material-symbols-outlined text-outline-variant text-xl group-focus-within:text-primary transition-colors">lock_reset</span>
-                                                    </div>
+                                                <div className="relative">
                                                     <Input
-                                                        className={`pl-11 pr-12 ${errors.password_confirmation ? 'ring-2 ring-red-500' : ''}`}
+                                                        className={`pr-12 ${errors.password_confirmation ? 'ring-2 ring-red-500' : ''}`}
                                                         id="password_confirmation"
                                                         value={data.password_confirmation}
                                                         onChange={(e) => { setData('password_confirmation', e.target.value); clearErrors('password_confirmation'); }}
                                                         placeholder="••••••••"
                                                         type={showConfirmPassword ? 'text' : 'password'}
+                                                        icon={LockKeyhole}
                                                     />
                                                     <button
                                                         type="button"
                                                         onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                                        className="cursor-pointer absolute inset-y-0 right-0 pr-4 flex items-center text-primary hover:text-primary transition-colors focus:outline-hidden"
+                                                        className="cursor-pointer absolute inset-y-0 right-0 pr-4 flex items-center text-primary transition-opacity focus:outline-hidden hover:opacity-80"
                                                     >
                                                         {showConfirmPassword ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
                                                     </button>
@@ -286,7 +280,7 @@ export default function Register() {
                                         type="submit"
                                     >
                                         Selanjutnya
-                                        <span className="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                                        <ArrowRight className="size-5 group-hover:translate-x-1 transition-transform" />
                                     </Button>
                                 </form>
                                 <p className="text-center font-medium text-on-surface-variant pt-4">
@@ -305,34 +299,32 @@ export default function Register() {
                                     <div className="space-y-5">
                                         <div className="space-y-2">
                                             <label className="text-sm font-semibold text-on-surface-variant px-1" htmlFor="nik">NIK (Nomor Induk Kependudukan)</label>
-                                            <div className="relative group">
-                                                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                                    <span className="material-symbols-outlined text-outline-variant text-xl group-focus-within:text-primary transition-colors">badge</span>
-                                                </div>
-                                                <Input
-                                                    className={`pl-11 ${errors.nik ? 'ring-2 ring-red-500' : ''}`}
-                                                    id="nik"
-                                                    value={data.nik}
-                                                    onChange={(e) => { setData('nik', e.target.value); clearErrors('nik'); }}
-                                                    placeholder="16 digit nomor induk kependudukan"
-                                                    type="text"
-                                                    maxLength={16}
-                                                />
-                                            </div>
+                                            <Input
+                                                className={errors.nik ? 'ring-2 ring-red-500' : ''}
+                                                id="nik"
+                                                value={data.nik}
+                                                onChange={(e) => { setData('nik', e.target.value); clearErrors('nik'); }}
+                                                placeholder="16 digit nomor induk kependudukan"
+                                                type="text"
+                                                maxLength={16}
+                                                icon={CreditCard}
+                                            />
                                             {errors.nik && <p className="text-red-500 text-xs mt-1">{errors.nik}</p>}
                                         </div>
 
                                         <div className="grid grid-cols-2 gap-4">
                                             <div className="space-y-2">
                                                 <Label className="text-sm font-semibold text-on-surface-variant px-1" htmlFor="date_of_birth">Tanggal Lahir</Label>
-                                                <DatePicker
+                                                <Input
+                                                    id="date_of_birth"
+                                                    type="date"
+                                                    className={`${errors.date_of_birth ? 'ring-2 ring-red-500' : ''} text-on-surface [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:w-full [&::-webkit-calendar-picker-indicator]:cursor-pointer`}
                                                     value={data.date_of_birth}
-                                                    onChange={(value) => {
-                                                        setData('date_of_birth', value);
+                                                    onChange={(e) => {
+                                                        setData('date_of_birth', e.target.value);
                                                         clearErrors('date_of_birth');
                                                     }}
-                                                    placeholder="Pilih tanggal lahir"
-                                                    error={!!errors.date_of_birth}
+                                                    icon={Calendar}
                                                 />
                                                 {errors.date_of_birth && <p className="text-red-500 text-xs mt-1">{errors.date_of_birth}</p>}
                                             </div>
@@ -341,7 +333,7 @@ export default function Register() {
                                                 <Label className="text-sm font-semibold text-on-surface-variant px-1" htmlFor="blood_type">Golongan Darah</Label>
                                                 <div className="relative group">
                                                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
-                                                        <span className="material-symbols-outlined text-outline-variant text-xl group-focus-within:text-primary transition-colors">bloodtype</span>
+                                                        <Droplet className="size-5 text-outline-variant group-focus-within:text-primary transition-colors" />
                                                     </div>
                                                     <Select
                                                         value={data.blood_type}
@@ -378,7 +370,7 @@ export default function Register() {
                                                 <div className="flex-1">
                                                     <Label
                                                         htmlFor="gender-pria"
-                                                        className={`flex items-center gap-3 p-4 bg-surface-container rounded-lg cursor-pointer transition-all duration-200 border-2 ${data.gender === 'pria' ? 'border-primary bg-white' : 'border-transparent'} ${errors.gender ? 'border-red-500' : ''}`}
+                                                        className={`flex items-center gap-3 p-4 bg-surface-container rounded-lg cursor-pointer border-2 ${data.gender === 'pria' ? 'border-primary' : 'border-transparent'} ${errors.gender ? 'border-red-500' : ''}`}
                                                     >
                                                         <RadioGroupItem value="pria" id="gender-pria" />
                                                         <span className="text-on-surface font-bold">Laki-laki</span>
@@ -387,7 +379,7 @@ export default function Register() {
                                                 <div className="flex-1">
                                                     <Label
                                                         htmlFor="gender-wanita"
-                                                        className={`flex items-center gap-3 p-4 bg-surface-container rounded-lg cursor-pointer transition-all duration-200 border-2 ${data.gender === 'wanita' ? 'border-primary bg-white' : 'border-transparent'} ${errors.gender ? 'border-red-500' : ''}`}
+                                                        className={`flex items-center gap-3 p-4 bg-surface-container rounded-lg cursor-pointer transition-all duration-200 border-2 ${data.gender === 'wanita' ? 'border-primary' : 'border-transparent'} ${errors.gender ? 'border-red-500' : ''}`}
                                                     >
                                                         <RadioGroupItem value="wanita" id="gender-wanita" />
                                                         <span className="text-on-surface font-bold">Perempuan</span>
@@ -401,7 +393,7 @@ export default function Register() {
                                             <label className="text-sm font-semibold text-on-surface-variant px-1" htmlFor="address">Alamat Lengkap</label>
                                             <div className="relative group">
                                                 <div className="absolute top-3 left-0 pl-4 flex items-start pointer-events-none">
-                                                    <span className="material-symbols-outlined text-outline-variant text-xl group-focus-within:text-primary transition-colors">home</span>
+                                                    <Home className="size-5 mb-0.5 text-outline-variant group-focus-within:text-primary transition-colors" />
                                                 </div>
                                                 <Textarea
                                                     className={`pl-11 ${errors.address ? 'ring-2 ring-red-500' : ''}`}
@@ -430,7 +422,7 @@ export default function Register() {
                                             disabled={processing}
                                         >
                                             {processing ? 'Mendaftarkan...' : 'Daftar Sekarang'}
-                                            <span className="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                                            <ArrowRight className="size-5 group-hover:translate-x-1 transition-transform" />
                                         </Button>
                                     </div>
                                 </form>
