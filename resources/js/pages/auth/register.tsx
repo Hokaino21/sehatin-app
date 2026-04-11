@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button';
-
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -197,39 +196,29 @@ export default function Register() {
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div className="space-y-2">
                                                 <label className="text-sm font-semibold text-on-surface-variant px-1" htmlFor="email">Email</label>
-                                                <div className="relative group">
-                                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                                        <span className="material-symbols-outlined text-outline-variant text-xl group-focus-within:text-primary transition-colors">mail</span>
-                                                    </div>
-                                                    <Input
-                                                        className={`pl-11 ${errors.email ? 'ring-2 ring-red-500' : ''}`}
-                                                        id="email"
-                                                        value={data.email}
-                                                        onChange={(e) => { setData('email', e.target.value); clearErrors('email'); }}
-                                                        placeholder="nama@contoh.com"
-                                                        type="email"
-                                                        icon={Mail}
-                                                    />
-                                                </div>
+                                                <Input
+                                                    className={errors.email ? 'ring-2 ring-red-500' : ''}
+                                                    id="email"
+                                                    value={data.email}
+                                                    onChange={(e) => { setData('email', e.target.value); clearErrors('email'); }}
+                                                    placeholder="nama@contoh.com"
+                                                    type="email"
+                                                    icon={Mail}
+                                                />
                                                 {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                                             </div>
 
                                             <div className="space-y-2">
                                                 <label className="text-sm font-semibold text-on-surface-variant px-1" htmlFor="phone">Nomor Ponsel</label>
-                                                <div className="relative group">
-                                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                                        <span className="material-symbols-outlined text-outline-variant text-xl group-focus-within:text-primary transition-colors">call</span>
-                                                    </div>
-                                                    <Input
-                                                        className={`pl-11 ${errors.phone ? 'ring-2 ring-red-500' : ''}`}
-                                                        id="phone"
-                                                        value={data.phone}
-                                                        onChange={(e) => { setData('phone', e.target.value); clearErrors('phone'); }}
-                                                        placeholder="08xx-xxxx-xxxx"
-                                                        type="tel"
-                                                        icon={Phone}
-                                                    />
-                                                </div>
+                                                <Input
+                                                    className={errors.phone ? 'ring-2 ring-red-500' : ''}
+                                                    id="phone"
+                                                    value={data.phone}
+                                                    onChange={(e) => { setData('phone', e.target.value); clearErrors('phone'); }}
+                                                    placeholder="08xx-xxxx-xxxx"
+                                                    type="tel"
+                                                    icon={Phone}
+                                                />
                                                 {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
                                             </div>
                                         </div>
@@ -339,20 +328,16 @@ export default function Register() {
 
                                             <div className="space-y-2">
                                                 <Label className="text-sm font-semibold text-on-surface-variant px-1" htmlFor="blood_type">Golongan Darah</Label>
-                                                <div className="relative group">
-                                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
-                                                        <Droplet className="size-5 text-outline-variant group-focus-within:text-primary transition-colors" />
-                                                    </div>
-                                                    <Select
+                                                <Select
                                                         value={data.blood_type}
                                                         onValueChange={(value) => { setData('blood_type', value); clearErrors('blood_type'); }}
                                                     >
                                                         <SelectTrigger
                                                             className={cn(
-                                                                "w-full pl-11",
                                                                 errors.blood_type && "ring-2 ring-red-500"
                                                             )}
                                                             id="blood_type"
+                                                            icon={Droplet}
                                                         >
                                                             <SelectValue placeholder="Pilih" />
                                                         </SelectTrigger>
@@ -363,7 +348,6 @@ export default function Register() {
                                                             <SelectItem value="O">O</SelectItem>
                                                         </SelectContent>
                                                     </Select>
-                                                </div>
                                                 {errors.blood_type && <p className="text-red-500 text-xs mt-1">{errors.blood_type}</p>}
                                             </div>
                                         </div>
@@ -399,18 +383,14 @@ export default function Register() {
 
                                         <div className="space-y-2">
                                             <label className="text-sm font-semibold text-on-surface-variant px-1" htmlFor="address">Alamat Lengkap</label>
-                                            <div className="relative group">
-                                                <div className="absolute top-3 left-0 pl-4 flex items-start pointer-events-none">
-                                                    <Home className="size-5 mb-0.5 text-outline-variant group-focus-within:text-primary transition-colors" />
-                                                </div>
-                                                <Textarea
-                                                    className={`pl-11 ${errors.address ? 'ring-2 ring-red-500' : ''}`}
-                                                    id="address"
-                                                    value={data.address}
-                                                    onChange={(e) => { setData('address', e.target.value); clearErrors('address'); }}
-                                                    placeholder="Masukkan alamat lengkap Anda saat ini"
-                                                />
-                                            </div>
+                                            <Textarea
+                                                className={errors.address ? 'ring-2 ring-red-500' : ''}
+                                                id="address"
+                                                value={data.address}
+                                                onChange={(e) => { setData('address', e.target.value); clearErrors('address'); }}
+                                                placeholder="Masukkan alamat lengkap Anda saat ini"
+                                                icon={Home}
+                                            />
                                             {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address}</p>}
                                         </div>
                                     </div>
