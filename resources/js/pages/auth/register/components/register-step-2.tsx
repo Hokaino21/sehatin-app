@@ -105,7 +105,7 @@ export default function RegisterStep2({ data, setData, errors, clearErrors, proc
                                     className={`flex items-center gap-3 p-4 bg-surface-container rounded-lg cursor-pointer border-2 transition-all ${data.gender === 'pria' ? 'border-primary bg-white' : 'border-transparent'} ${errors.gender ? 'border-red-500' : ''}`}
                                 >
                                     <RadioGroupItem value="pria" id="gender-pria" />
-                                    <span className="text-on-surface font-bold">Laki-laki</span>
+                                    <span className="text-on-surface-variant font-semibold">Laki-laki</span>
                                 </Label>
                             </div>
                             <div className="flex-1">
@@ -114,7 +114,7 @@ export default function RegisterStep2({ data, setData, errors, clearErrors, proc
                                     className={`flex items-center gap-3 p-4 bg-surface-container rounded-lg cursor-pointer transition-all border-2 ${data.gender === 'wanita' ? 'border-primary bg-white' : 'border-transparent'} ${errors.gender ? 'border-red-500' : ''}`}
                                 >
                                     <RadioGroupItem value="wanita" id="gender-wanita" />
-                                    <span className="text-on-surface font-bold">Perempuan</span>
+                                    <span className="text-on-surface-variant font-semibold">Perempuan</span>
                                 </Label>
                             </div>
                         </RadioGroup>
