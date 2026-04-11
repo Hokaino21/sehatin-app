@@ -13,7 +13,7 @@ interface BrandLogoProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const BrandLogo = React.forwardRef<HTMLDivElement, BrandLogoProps>(
     ({ size = 8, showText = false, textClassName, iconClassName, className, ...props }, ref) => {
-        const { settings } = usePage<SharedData>().props;
+        const { themes } = usePage<SharedData>().props;
 
         return (
             <div ref={ref} className={cn('flex items-center gap-2', className)} {...props}>
@@ -23,8 +23,8 @@ const BrandLogo = React.forwardRef<HTMLDivElement, BrandLogoProps>(
                         `size-${size}`
                     )}
                 >
-                    {settings?.brand_logo ? (
-                        <img src={settings.brand_logo} alt="Logo" className="h-full w-full object-cover" />
+                    {themes?.brand_logo ? (
+                        <img src={themes.brand_logo} alt="Logo" className="h-full w-full object-cover" />
                     ) : (
                         <AppLogoIcon className={cn('fill-current text-white', iconClassName || `size-${Math.max(1, Math.floor(size * 0.6))}`)} />
                     )}

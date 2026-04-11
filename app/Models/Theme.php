@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Setting extends Model
+class Theme extends Model
 {
     protected $fillable = [
         'key',
@@ -12,7 +12,7 @@ class Setting extends Model
     ];
 
     /**
-     * Get a setting value by key.
+     * Get a theme value by key.
      */
     public static function getByKey(string $key, $default = null)
     {

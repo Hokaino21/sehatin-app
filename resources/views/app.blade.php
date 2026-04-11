@@ -17,9 +17,9 @@
 
         <style id="dynamic-theme">
             :root {
-                --primary: {{ $page['props']['settings']['primary_color'] ?? \App\Models\Setting::getByKey('primary_color', '#5ba7f7') }};
-                --secondary: {{ $page['props']['settings']['secondary_color'] ?? \App\Models\Setting::getByKey('secondary_color', '#475569') }};
-                --ring: {{ $page['props']['settings']['primary_color'] ?? \App\Models\Setting::getByKey('primary_color', '#5ba7f7') }};
+                --primary: {{ $page['props']['themes']['primary_color'] ?? \App\Models\Theme::getByKey('primary_color', '#5ba7f7') }};
+                --secondary: {{ $page['props']['themes']['secondary_color'] ?? \App\Models\Theme::getByKey('secondary_color', '#475569') }};
+                --ring: {{ $page['props']['themes']['primary_color'] ?? \App\Models\Theme::getByKey('primary_color', '#5ba7f7') }};
             }
         </style>
     </head>

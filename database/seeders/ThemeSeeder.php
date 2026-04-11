@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Setting;
+use App\Models\Theme;
 use Illuminate\Database\Seeder;
 
-class SettingSeeder extends Seeder
+class ThemeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $settings = [
+        $themes = [
             [
                 'key' => 'primary_color',
                 'value' => '#5ba7f7',
@@ -27,8 +27,8 @@ class SettingSeeder extends Seeder
             ],
         ];
 
-        foreach ($settings as $setting) {
-            Setting::updateOrCreate(['key' => $setting['key']], $setting);
+        foreach ($themes as $theme) {
+            Theme::updateOrCreate(['key' => $theme['key']], $theme);
         }
     }
 }

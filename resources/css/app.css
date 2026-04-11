@@ -22,48 +22,39 @@
     --font-headline: 'Manrope', sans-serif;
     --font-body: 'Inter', sans-serif;
 
-    --radius-lg: var(--radius);
-    --radius-md: calc(var(--radius) - 2px);
-    --radius-sm: calc(var(--radius) - 4px);
-    --radius-xl: 1rem;
-    --radius-2xl: 1.5rem;
+    /* Dynamic Theme Colors */
+    --color-primary: var(--primary);
+    --color-on-primary: var(--on-primary);
+    --color-secondary: var(--secondary);
+    --color-ring: var(--ring);
 
+    /* Fixed Brand Colors */
     --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    
+    /* Surface & Containers */
     --color-surface: var(--surface);
     --color-on-surface: var(--on-surface);
     --color-on-surface-variant: var(--on-surface-variant);
     --color-surface-container: var(--surface-container);
-    --color-primary: var(--primary);
-    --color-on-primary: var(--on-primary);
-    --color-secondary: var(--secondary);
-    --color-tertiary: var(--tertiary);
-    --color-outline-variant: var(--outline-variant);
-    --color-purple: var(--accent-purple);
-    --color-orange: var(--accent-orange);
-
-    --color-foreground: var(--foreground);
-    --color-card: var(--card);
-    --color-card-foreground: var(--card-foreground);
-    --color-popover: var(--popover);
-    --color-popover-foreground: var(--popover-foreground);
-    --color-primary-foreground: var(--on-primary);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-muted: var(--muted);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-accent: var(--accent);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-destructive: var(--destructive);
-    --color-destructive-foreground: var(--destructive-foreground);
+    
+    /* UI Elements */
     --color-border: var(--border);
     --color-input: var(--input);
-    --color-ring: var(--ring);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    
+    /* Status Colors */
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
 
-    --color-chart-1: var(--chart-1);
-    --color-chart-2: var(--chart-2);
-    --color-chart-3: var(--chart-3);
-    --color-chart-4: var(--chart-4);
-    --color-chart-5: var(--chart-5);
+    /* Accents */
+    --color-purple: #a855f7;
+    --color-orange: #f97316;
 
+    /* Sidebar Specific */
     --color-sidebar: var(--sidebar-background);
     --color-sidebar-foreground: var(--sidebar-foreground);
     --color-sidebar-primary: var(--sidebar-primary);
@@ -72,69 +63,57 @@
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
     --color-sidebar-ring: var(--sidebar-ring);
 
-    --color-ring: var(--ring);
-}
-
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-    *,
-    ::after,
-    ::before,
-    ::backdrop,
-    ::file-selector-button {
-        border-color: var(--color-gray-200, currentColor);
-    }
+    /* Radius */
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
 }
 
 :root {
-    /* Dynamics will be injected via app.blade.php */
-    --on-primary: #ffffff;
-    --accent-purple: #a855f7;
-    --accent-orange: #f97316;
-    --tertiary: #94a3b8;
+    /* Dynamics injected via app.blade.php: --primary, --secondary, --ring */
+    
+    /* Stable Neutral Colors (Greys) */
     --background: #f8fafc;
+    --foreground: #0f172a;
+    --on-primary: #ffffff;
+    
     --surface: #ffffff;
     --on-surface: #0f172a;
     --on-surface-variant: #64748b;
     --surface-container: #f1f5f9;
-    --outline-variant: #aab7c8;
+    
+    --border: #e2e8f0;
+    --input: #f1f5f9;
+    
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
 
-    --foreground: hsl(0, 0%, 3.9%);
-    --card: hsl(0, 0%, 100%);
-    --card-foreground: hsl(0, 0%, 3.9%);
-    --popover: hsl(0, 0%, 100%);
-    --popover-foreground: hsl(0, 0%, 3.9%);
-    --secondary-foreground: hsl(0, 0%, 9%);
-    --muted: hsl(0, 0%, 96.1%);
-    --muted-foreground: hsl(0, 0%, 45.1%);
-    --accent: hsl(0, 0%, 96.1%);
-    --accent-foreground: hsl(0, 0%, 9%);
-    --destructive: hsl(0, 84.2%, 60.2%);
-    --destructive-foreground: hsl(0, 0%, 98%);
-    --border: hsl(0, 0%, 92.8%);
-    --input: hsl(0, 0%, 89.8%);
-    /* Dynamics will be injected via app.blade.php */
-    --chart-1: hsl(12, 76%, 61%);
-    --chart-2: hsl(173, 58%, 39%);
-    --chart-3: hsl(197, 37%, 24%);
-    --chart-4: hsl(43, 74%, 66%);
-    --chart-5: hsl(27, 87%, 67%);
-    --radius: 0.5rem;
-    --sidebar-background: hsl(0, 0%, 98%);
-    --sidebar-foreground: hsl(240, 5.3%, 30%);
-    --sidebar-primary: hsl(0, 0%, 10%);
-    --sidebar-primary-foreground: hsl(0, 0%, 98%);
-    --sidebar-accent: hsl(0, 0%, 94%);
-    --sidebar-accent-foreground: hsl(0, 0%, 30%);
-    --sidebar-border: hsl(0, 0%, 91%);
-    --sidebar-ring: hsl(217.2, 91.2%, 59.8%);
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+
+    --radius: 0.75rem;
+
+    /* Sidebar Neutrals */
+    --sidebar-background: #ffffff;
+    --sidebar-foreground: #64748b;
+    --sidebar-primary: var(--primary);
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #f1f5f9;
+    --sidebar-accent-foreground: var(--primary);
+    --sidebar-border: #e2e8f0;
+    --sidebar-ring: var(--ring);
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
 }
 
 .material-symbols-outlined {
@@ -146,7 +125,7 @@
 }
 
 .stepper-rail {
-    background: linear-gradient(to right, var(--primary) 50%, var(--outline-variant) 50%);
+    background: linear-gradient(to right, var(--primary) 50%, #e2e8f0 50%);
     background-size: 200% 100%;
     background-position: 100% 0;
     transition: background-position 0.3s ease-in-out;
@@ -154,14 +133,4 @@
 
 .stepper-rail.active {
     background-position: 0 0;
-}
-
-@layer base {
-    * {
-        @apply border-border;
-    }
-
-    body {
-        @apply bg-background text-foreground;
-    }
 }
