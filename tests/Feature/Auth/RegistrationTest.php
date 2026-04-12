@@ -20,6 +20,6 @@ test('new users can register', function () {
         'blood_type' => 'O',
     ]);
 
-    $this->assertAuthenticated();
-    $response->assertRedirect(route('dashboard', absolute: false));
+    $this->assertGuest();
+    $response->assertRedirect(route('login'));
 });
