@@ -27,7 +27,7 @@ class UserFactory extends Factory
             'nik' => fake()->unique()->numerify('1375################'),
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'password' => static::$password ??= Hash::make('Password123@'),
+            'password' => static::$password ??= Hash::make('password'),
             'phone' => fake()->numerify('088#########'),
             'role' => 'patient',
             'is_active' => true,
