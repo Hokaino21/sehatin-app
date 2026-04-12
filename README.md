@@ -19,6 +19,16 @@ cp .env.example .env
 ```
 
 ```bash
+cp .env.testing.example .env.testing
+```
+```bash
+php. ini
+extension=pdo_mysql
+extension=pdo_sqlite
+extension=sqlite3
+```
+
+```bash
 php artisan key:generate
 ```
 
@@ -27,6 +37,13 @@ DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=sehatin
+DB_USERNAME=root
+DB_PASSWORD=
+```
+```bash
+APP_KEY=
+DB_CONNECTION=mysql
+DB_DATABASE=test
 DB_USERNAME=root
 DB_PASSWORD=
 ```
