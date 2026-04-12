@@ -28,7 +28,7 @@ Route::middleware(['auth'])->group(function () {
     })->name('doctor.jadwal');
 
     Route::get('kunjungan', function () {
-        return Inertia::render('patients/kunjungan/pages/kunjungan');
+        return Inertia::render('patient/kunjungan/pages/kunjungan');
     })->name('patient.kunjungan');
 });
 
