@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
         ]);
 
-        // Seed Polis first
+        // Polis
         $polis = \App\Models\Poli::factory(3)->create();
 
         // Doctors
@@ -42,10 +42,20 @@ class DatabaseSeeder extends Seeder
                 'role' => 'doctor',
             ]);
 
-            \App\Models\Doctor::factory()->create([
+            $doctor = \App\Models\Doctor::factory()->create([
                 'user_id' => $user->id,
                 'poli_id' => $polis[$index % 3]->id,
                 'specialization' => $data['spec'],
+            ]);
+
+            // Seed Doctor Schedules
+            \App\Models\DoctorSchedule::factory()->create([
+                'doctor_id' => $doctor->id,
+                'day_of_week' => 'Senin',
+            ]);
+            \App\Models\DoctorSchedule::factory()->create([
+                'doctor_id' => $doctor->id,
+                'day_of_week' => 'Selasa',
             ]);
         }
 
@@ -57,6 +67,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Fahry', 'email' => 'fahry@gmail.com'],
         ];
 
+        $patients = [];
         foreach ($patientsData as $data) {
             $user = User::factory()->create([
                 'name' => $data['name'],
@@ -65,9 +76,63 @@ class DatabaseSeeder extends Seeder
                 'role' => 'patient',
             ]);
 
-            \App\Models\Patient::factory()->create([
+            $patients[] = \App\Models\Patient::factory()->create([
                 'user_id' => $user->id,
             ]);
         }
+
+        // Create random additional patients
+        $extraPatients = \App\Models\Patient::factory(5)->create();
+        $allPatients = array_merge($patients, $extraPatients->all());
+
+        // Get all doctors
+        $doctors = \App\Models\Doctor::all();
+
+        // Seed Appointments and Medical Records
+        foreach ($allPatients as $patient) {
+            // Past appointments (completed)
+            $completedAppointments = \App\Models\Appointment::factory(2)->create([
+                'patient_id' => $patient->id,
+                'doctor_id' => $doctors->random()->id,
+                'poli_id' => function (array $attributes) {
+                    return \App\Models\Doctor::find($attributes['doctor_id'])->poli_id;
+                },
+                'appointment_date' => fake()->dateTimeBetween('-1 month', '-1 day')->format('Y-m-d'),
+                'status' => 'completed',
+            ]);
+
+            foreach ($completedAppointments as $appointment) {
+                \App\Models\MedicalRecord::factory()->create([
+                    'appointment_id' => $appointment->id,
+                    'doctor_id' => $appointment->doctor_id,
+                    'patient_id' => $appointment->patient_id,
+                ]);
+            }
+
+            // Future appointments (booked)
+            \App\Models\Appointment::factory(1)->create([
+                'patient_id' => $patient->id,
+                'doctor_id' => $doctors->random()->id,
+                'poli_id' => function (array $attributes) {
+                    return \App\Models\Doctor::find($attributes['doctor_id'])->poli_id;
+                },
+                'appointment_date' => fake()->dateTimeBetween('now', '+1 month')->format('Y-m-d'),
+                'status' => 'booked',
+            ]);
+
+            // Cancelled appointments
+            \App\Models\Appointment::factory(1)->create([
+                'patient_id' => $patient->id,
+                'doctor_id' => $doctors->random()->id,
+                'poli_id' => function (array $attributes) {
+                    return \App\Models\Doctor::find($attributes['doctor_id'])->poli_id;
+                },
+                'appointment_date' => fake()->dateTimeBetween('-1 month', '+1 month')->format('Y-m-d'),
+                'status' => 'cancelled',
+                'cancel_reason' => 'Pasien ada keperluan mendadak',
+                'cancelled_by' => 'patient',
+            ]);
+        }
+
     }
 }
