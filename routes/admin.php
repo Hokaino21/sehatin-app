@@ -10,4 +10,10 @@ Route::middleware(['role:admin'])->prefix('admin')->name('admin.')->group(functi
 
     Route::get('schedules', fn() => Inertia::render('admin/schedules/pages/schedules'))
         ->name('schedules');
+
+    Route::get('polis', fn() => Inertia::render('admin/polis/pages/polis'))
+        ->name('polis');
+
+    Route::get('doctors', fn() => Inertia::render('admin/doctors/pages/doctors'))
+        ->name('doctors');
 });

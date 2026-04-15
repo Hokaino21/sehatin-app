@@ -11,7 +11,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', function () {
         return match (auth()->user()->role) {
             'admin'   => redirect()->route('admin.dashboard'),
-            'doctor'  => redirect()->route('doctor.jadwal'),
+            'doctor'  => redirect()->route('doctor.schedule'),
             'patient' => redirect()->route('patient.kunjungan'),
             default   => redirect('/'),
         };
