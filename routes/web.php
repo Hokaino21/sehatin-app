@@ -5,7 +5,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('welcome');
-})->name('home');
+})->name('home')asd;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', function () {
